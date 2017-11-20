@@ -1,0 +1,15 @@
+# Settings file in YAML
+node.name: "logstash"
+pipeline.workers: 6
+pipeline.output.workers: 2
+pipeline.batch.size: 1800
+pipeline.batch.delay: 5
+pipeline.unsafe_shutdown: false
+config.reload.automatic: true
+config.reload.interval: 60
+queue.type: memory
+http.host: "0.0.0.0"
+http.port: 9600
+log.level: warn
+path.logs: /var/log/logstash
+path.config: /opt/logstash/pipeline
