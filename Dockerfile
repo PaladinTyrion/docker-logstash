@@ -81,6 +81,8 @@ COPY config/logstash $LOGSTASH_HOME/config/
 COPY config/pipeline $LOGSTASH_HOME/pipeline/
 COPY logstash-entrypoint.sh /
 
+RUN chmod +x /logstash-entrypoint.sh
+
 EXPOSE 9600 5044
 
 ENTRYPOINT ["/logstash-entrypoint.sh"]
