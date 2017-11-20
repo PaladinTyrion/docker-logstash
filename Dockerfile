@@ -29,14 +29,15 @@ ENV VERSION 6.0.0
 ENV URL "https://artifacts.elastic.co/downloads/logstash"
 ENV TARBALL "$URL/logstash-${VERSION}.tar.gz"
 ENV TARBALL_ASC "$URL/logstash-${VERSION}.tar.gz.asc"
-ENV TARBALL_SHA "6518ab12c13e01b043748470e60bbf1eaed7d8df3ad7b578b78421983953064784669e47ea23543d043df58d9160aab76e0a3b0aa9ad30b478679d0499c135c9  logstash-6.0.0-rc2.tar.gz"
+ENV TARBALL_SHA "0b35057a7308152de43927f06fbe0198c5c3135d9fa0dec1b48feeea084ecc04b3f6852c9c0239f6f854f5ea0a7a2cd33432a9faddbd6b523f2de336c8b21aaf  logstash.tar.gz"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
-RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl tar \
+RUN apk update \
+  && apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl tar \
   && cd /tmp \
   && wget --progress=bar:force -O logstash.tar.gz "$TARBALL"; \
   if [ "$TARBALL_SHA" ]; then \
-		echo "$TARBALL_SHA *logstash.tar.gz" | sha512sum -c -; \
+		echo "$TARBALL_SHA" | sha512sum -c -; \
 	fi; \
 	\
 	if [ "$TARBALL_ASC" ]; then \
