@@ -77,7 +77,7 @@ RUN set -ex; \
 VOLUME ["/etc/logstash/conf.d"]
 
 COPY config/logstash $LOGSTASH_HOME/config/
-COPY config/pipeline/default.conf $LOGSTASH_HOME/pipeline/logstash.conf
+COPY config/pipeline $LOGSTASH_HOME/pipeline/
 COPY logstash-entrypoint.sh /
 
 EXPOSE 9600 5044
