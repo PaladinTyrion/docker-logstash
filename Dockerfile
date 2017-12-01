@@ -6,6 +6,7 @@ MAINTAINER paladintyrion <paladintyrion@gmail.com>
 #                               GROUP && USER
 ###############################################################################
 
+ENV LOGSTASH_HOME /opt/logstash
 # ensure logstash user exists
 ENV LOGSTASH_GID 442
 ENV LOGSTASH_UID 442
@@ -47,7 +48,6 @@ RUN set -x \
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV LANGUAGE en_US:en
-ENV LOGSTASH_HOME /opt/logstash
 
 RUN mkdir -p $LOGSTASH_HOME \
 		&& mkdir -p /var/log/logstash /etc/logstash/conf.d /var/lib/logstash /tmp/logstash \
@@ -102,7 +102,7 @@ RUN sed -i -e 's#^LS_HOME=$#LS_HOME='$LOGSTASH_HOME'#' /etc/init.d/logstash \
 
 COPY ./config/logstash/logstash.yml $LOGSTASH_HOME/config/logstash.yml
 COPY ./config/logstash/logstash-jvm.options $LOGSTASH_HOME/config/jvm.options
-RUN chmod -R +r /opt/logstash/config
+RUN chmod -R +r $LOGSTASH_HOME/config
 
 # filters
 COPY ./config/pipeline/00-kafka-input.conf /etc/logstash/conf.d/00-kafka-input.conf
