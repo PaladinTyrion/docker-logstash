@@ -63,10 +63,10 @@ start() {
   ulimit -n ${LS_OPEN_FILES}
 
   # Run the program!
-  nice -n ${LS_NICE} chroot --userspec $LS_USER:$LS_GROUP / sh -c "
+  nice -n ${LS_NICE} chroot / sh -c "
     cd $LS_HOME
     ulimit -n ${LS_OPEN_FILES}
-    su-exec \"$program\" $args
+    su-exec $name $program $args
   " > "${LS_LOG_DIR}/$name.stdout" &
 
   # Generate the pidfile from here. If we instead made the forked process

@@ -41,7 +41,7 @@ fi
 ## start services as needed
 
 ### crond
-service cron start
+service crond start
 
 ### Logstash
 

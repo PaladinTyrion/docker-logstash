@@ -21,6 +21,7 @@ RUN apk update \
 		bash \
 		libc6-compat \
 		libzmq \
+		openrc \
 		tzdata \
 		&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -33,6 +34,7 @@ RUN apk add --no-cache 'su-exec>=0.2'
 
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LOGSTASH_HOME /opt/logstash
 ENV LOGSTASH_PATH $LOGSTASH_HOME/bin
 ENV PATH $LOGSTASH_PATH:$PATH
