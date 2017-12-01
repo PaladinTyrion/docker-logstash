@@ -37,7 +37,6 @@ RUN set -x \
 		&& apt-get update -qq \
 		&& apt-get install -qqy openjdk-8-jdk \
 		&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-		&& apt-get purge -y --auto-remove ca-certificates wget \
 		&& apt-get clean \
 		&& set +x
 
@@ -63,7 +62,7 @@ ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 RUN set -x \
 		&& apt-get update -qq \
-		&& apt-get install -yq --no-install-recommends wget ca-certificates gnupg openssl tar \
+		&& apt-get install -yq --no-install-recommends gnupg openssl tar \
 		&& cd /tmp \
 		&& wget --progress=bar:force -O logstash.tar.gz "$TARBALL"; \
 		if [ "$TARBALL_SHA" ]; then \
@@ -81,7 +80,7 @@ RUN set -x \
 		mkdir -p "$LOGSTASH_HOME"; \
 		tar -xzf logstash.tar.gz --strip-components=1 -C "$LOGSTASH_HOME"; \
 		rm -f logstash.tar.gz; \
-		apt-get purge -y --auto-remove wget ca-certificates gnupg openssl tar; \
+		apt-get remove -y wget ca-certificates gnupg openssl tar; \
 		apt-get clean; \
 		rm -fr /tmp/* ; \
 		logstash --version; \
