@@ -1,0 +1,12 @@
+# Docker Compose file for logstash
+
+# Build with:
+# docker-compose build logstash
+
+# Run with:
+# docker-compose up
+
+logstash:
+  build: .
+  ports:
+    - "9600:9600"
