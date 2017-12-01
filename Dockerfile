@@ -19,10 +19,10 @@ RUN groupadd -r logstash -g ${LOGSTASH_GID} \
 
 ENV GOSU_VERSION 1.10
 
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
 		&& apt-get update -qq \
-		&& DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends tzdata \
+		&& apt-get install -yq --no-install-recommends tzdata cron \
 		&& dpkg-reconfigure -f noninteractive tzdata \
 		&& apt-get install -qqy --no-install-recommends ca-certificates wget \
 		&& rm -rf /var/lib/apt/lists/* \
@@ -47,6 +47,8 @@ RUN set -x \
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV LANGUAGE en_US:en
+ENV LOGSTASH_PATH $LOGSTASH_HOME/bin
+ENV PATH $LOGSTASH_PATH:$PATH
 
 RUN mkdir -p $LOGSTASH_HOME \
 		&& mkdir -p /var/log/logstash /etc/logstash/conf.d /var/lib/logstash /tmp/logstash \
@@ -80,14 +82,12 @@ RUN set -x \
 		mkdir -p "$LOGSTASH_HOME"; \
 		tar -xzf logstash.tar.gz --strip-components=1 -C "$LOGSTASH_HOME"; \
 		rm -f logstash.tar.gz; \
-		apt-get remove -y wget ca-certificates gnupg openssl tar; \
-		apt-get clean; \
 		rm -fr /tmp/* ; \
 		logstash --version; \
 		set +x
 
-ENV LOGSTASH_PATH $LOGSTASH_HOME/bin
-ENV PATH $LOGSTASH_PATH:$PATH
+RUN apt-get autoremove \
+		&& apt-get autoclean
 
 COPY ./config/logstash/logstash-init /etc/init.d/logstash
 RUN sed -i -e 's#^LS_HOME=$#LS_HOME='$LOGSTASH_HOME'#' /etc/init.d/logstash \
