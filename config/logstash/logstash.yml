@@ -193,7 +193,7 @@ http.port: 9600
 #   * debug
 #   * trace
 #
-log.level: warn
+log.level: error
 path.logs: /var/log/logstash
 #
 # ------------ Other Settings --------------
