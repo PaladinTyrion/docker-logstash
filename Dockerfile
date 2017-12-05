@@ -117,8 +117,6 @@ RUN chmod -R +r /etc/logstash
 COPY ./config/logstash//logstash-logrotate /etc/logrotate.d/logstash
 RUN chmod 644 /etc/logrotate.d/logstash
 
-RUN mkdir -p /tmp/logstash && chown -R logstash:logstash /tmp/logstash
-
 ###############################################################################
 #                                    START
 ###############################################################################
