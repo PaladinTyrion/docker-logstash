@@ -69,6 +69,12 @@ else
   # OUTPUT_LOGFILES+="/var/log/logstash/logstash-plain.log "
 fi
 
+# Exit if nothing has been started
+if [ "$LOGSTASH_START" -ne "1" ]; then
+  >&2 echo "No services started. Exiting."
+  exit 1
+fi
+
 touch $OUTPUT_LOGFILES
 tail -f $OUTPUT_LOGFILES &
 wait
