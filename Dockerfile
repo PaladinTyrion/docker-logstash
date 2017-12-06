@@ -38,6 +38,7 @@ RUN set -x \
 		&& apt-get install -qqy openjdk-8-jdk \
 		&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 		&& apt-get clean \
+		&& rm -fr /tmp/* \
 		&& set +x
 
 ###############################################################################
@@ -82,7 +83,6 @@ RUN set -x \
 		mkdir -p "$LOGSTASH_HOME"; \
 		tar -xzf logstash.tar.gz --strip-components=1 -C "$LOGSTASH_HOME"; \
 		rm -f logstash.tar.gz; \
-		rm -fr /tmp/* ; \
 		logstash --version; \
 		set +x
 
