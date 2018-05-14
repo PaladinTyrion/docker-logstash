@@ -103,7 +103,8 @@ COPY ./config/logstash/logstash.yml $LOGSTASH_HOME/config/logstash.yml
 COPY ./config/logstash/logstash-jvm.options $LOGSTASH_HOME/config/jvm.options
 RUN chmod -R +r $LOGSTASH_HOME/config
 
-# filters
+# filters & jaas
+COPY ./config/logstash/kafka-client-jaas.conf /etc/logstash/kafka-client-jaas.conf
 COPY ./config/pipeline/00-kafka-input.conf /etc/logstash/conf.d/00-kafka-input.conf
 COPY ./config/pipeline/11-filter.conf /etc/logstash/conf.d/11-filter.conf
 COPY ./config/pipeline/12-filter.conf /etc/logstash/conf.d/12-filter.conf
