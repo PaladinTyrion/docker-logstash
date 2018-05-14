@@ -115,7 +115,7 @@ RUN chmod -R +r /etc/logstash
 
 ### configure logrotate
 
-COPY ./config/logstash//logstash-logrotate /etc/logrotate.d/logstash
+COPY ./config/logstash/logstash-logrotate /etc/logrotate.d/logstash
 RUN chmod 644 /etc/logrotate.d/logstash
 
 ###############################################################################
