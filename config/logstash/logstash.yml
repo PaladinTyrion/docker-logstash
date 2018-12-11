@@ -43,12 +43,12 @@ pipeline.output.workers: 16
 #
 # How many events to retrieve from inputs before sending to filters+workers
 #
-pipeline.batch.size: 3000
+pipeline.batch.size: 2500
 #
 # How long to wait before dispatching an undersized batch to filters+workers
 # Value is in milliseconds.
 #
-pipeline.batch.delay: 5
+pipeline.batch.delay: 4
 #
 # Force Logstash to exit during shutdown even if there are still inflight
 # events in memory. By default, logstash will refuse to quit until all
