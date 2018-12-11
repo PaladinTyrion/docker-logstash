@@ -38,12 +38,12 @@ path.data: /var/lib/logstash
 #
 # How many workers should be used per output plugin instance
 #
-pipeline.workers: 16
-pipeline.output.workers: 12
+pipeline.workers: 24
+pipeline.output.workers: 16
 #
 # How many events to retrieve from inputs before sending to filters+workers
 #
-pipeline.batch.size: 2500
+pipeline.batch.size: 3000
 #
 # How long to wait before dispatching an undersized batch to filters+workers
 # Value is in milliseconds.
@@ -144,12 +144,12 @@ queue.max_bytes: 1024mb
 # If using queue.type: persisted, the maximum number of acked events before forcing a checkpoint
 # Default is 1024, 0 for unlimited
 #
-queue.checkpoint.acks: 2048
+queue.checkpoint.acks: 0
 #
 # If using queue.type: persisted, the maximum number of written events before forcing a checkpoint
 # Default is 1024, 0 for unlimited
 #
-queue.checkpoint.writes: 2048
+queue.checkpoint.writes: 0
 #
 # If using queue.type: persisted, the interval in milliseconds when a checkpoint is forced on the head page
 # Default is 1000, 0 for no periodic checkpoint.
