@@ -66,7 +66,7 @@ else
   fi
 
   service logstash start
-  # OUTPUT_LOGFILES+="/var/log/logstash/logstash-plain.log "
+  OUTPUT_LOGFILES+="/var/log/logstash/logstash-plain.log "
 fi
 
 # Exit if nothing has been started
