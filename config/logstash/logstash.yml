@@ -38,8 +38,8 @@ path.data: /var/lib/logstash
 #
 # How many workers should be used per output plugin instance
 #
-pipeline.workers: 24
-pipeline.output.workers: 16
+pipeline.workers: 16
+pipeline.output.workers: 10
 #
 # How many events to retrieve from inputs before sending to filters+workers
 #
@@ -48,7 +48,7 @@ pipeline.batch.size: 2500
 # How long to wait before dispatching an undersized batch to filters+workers
 # Value is in milliseconds.
 #
-pipeline.batch.delay: 4
+pipeline.batch.delay: 10
 #
 # Force Logstash to exit during shutdown even if there are still inflight
 # events in memory. By default, logstash will refuse to quit until all
